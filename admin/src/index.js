@@ -27,7 +27,10 @@ export default {
 
         return component
       },
-      permissions: [],
+      permissions: [{
+        action: `plugin::${pluginId}.read`,
+        subject: null,
+      }],
     })
   },
 }

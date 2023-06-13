@@ -1,4 +1,7 @@
 'use strict'
+
+const pluginId = require("../admin/src/pluginId")
+
 /**
  * Add listeners to the collection indexed in Meilisearch.
  *
@@ -48,8 +51,18 @@ async function syncIndexedCollections({
     }
   }
 }
+const actions = [
+  {
+    section: 'plugins',
+    displayName: 'Access the plugin settings',
+    uid: 'read',
+    pluginName: pluginId,
+  },
+];
+
 
 module.exports = async ({ strapi }) => {
+  await strapi.admin.services.permission.actionProvider.registerMany(actions);
   const store = strapi.plugin('meilisearch').service('store')
   const lifecycle = strapi.plugin('meilisearch').service('lifecycle')
   const meilisearch = strapi.plugin('meilisearch').service('meilisearch')
