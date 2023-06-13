@@ -27,10 +27,12 @@ export default {
 
         return component
       },
-      permissions: [{
-        action: `plugin::${pluginId}.read`,
-        subject: null,
-      }],
+      permissions: [
+        {
+          action: `plugin::${pluginId}.read`,
+          subject: null,
+        },
+      ],
     })
   },
 }
